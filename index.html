@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Login Page</title>
+
+    <style>
+        /* Set header to flex to make left and right sections side-by-side */
+        header {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        header .left_bx1,
+        .right_bx1 {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header .left_bx1 {
+            width: 35%;
+            background: #fff;
+        }
+
+        header .left_bx1 .content {
+            width: 75%;
+            padding: 25px 20px;
+            background: #fff;
+        }
+
+        header .left_bx1 .content .card {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        header .left_bx1 .content .card label {
+            font-size: 23px;
+        }
+
+        header .left_bx1 .content .card input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid rgb(154, 154, 154);
+            background: rgb(238, 238, 238);
+            margin-top: 5px;
+        }
+
+        header .left_bx1 .content .submit {
+            margin-top: 30px;
+            padding: 8px 20px;
+            color: #fff;
+            background: #111727;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        header .left_bx1 .content .check {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        header .left_bx1 .content .check span {
+            margin-left: 5px;
+            font-size: 18px;
+        }
+
+        header .left_bx1 .content p {
+            margin-top: 90px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        header .left_bx1 .content p a {
+            text-decoration: none;
+            color: #5adae0;
+            font-weight: bold;
+        }
+
+        header .right_bx1 {
+            width: 65%;
+            background: #0b1320;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header .right_bx1 img {
+            width: 80%; /* Adjusted to fit better */
+            height: auto;
+        }
+
+        header .right_bx1 h3 {
+            position: absolute;
+            background: #5adae0;
+            color: #000;
+            right: 0;
+            bottom: 20px;
+            padding: 3px 10px;
+            border-radius: 5px 0px 0px 5px;
+            font-size: 17px;
+        }
+    </style>
+
+    <script>
+        function redirectToIndex(event) {
+            event.preventDefault();
+            // Redirect to index.html
+            window.location.href = 'index2.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="left_bx1">
+            <div class="content">
+                <form method="post" onsubmit="redirectToIndex(event)">
+                    <h3>Login</h3>
+                    <div class="card">
+                        <label for="name">Name</label>
+                        <input type="text" name="user_name" placeholder="Enter Your Username" required>
+                    </div>
+                    <div class="card">
+                        <label for="password">Password</label>
+                        <input type="password" name="user_password" placeholder="Enter Your Password" required>
+                    </div>
+                    <input type="submit" value="Login" class="submit">
+                    <div class="check">
+                        <input type="checkbox" name="" id=""> <span>Remember Me.</span>
+                    </div>
+                    <p>Don't have an account yet? <a href="signup.html">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+        <!-- right box  -->
+        <div class="right_bx1">
+            <img src="./login-banner.png" alt="Login Banner">
+            <h3>Incorrect Password</h3>
+        </div>
+    </header>
+</body>
+</html>
+
