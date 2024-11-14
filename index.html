@@ -8,7 +8,6 @@
     <title>Login Page</title>
 
     <style>
-        /* Set header to flex to make left and right sections side-by-side */
         header {
             display: flex;
             width: 100%;
@@ -110,12 +109,55 @@
             border-radius: 5px 0px 0px 5px;
             font-size: 17px;
         }
+        .validation-message {
+            font-size: 14px;
+            color: red; /* Set color to red */
+            margin-top: 5px;
+        }
     </style>
 
     <script>
-        function redirectToIndex(event) {
+        function validateUsername() {
+            const username = document.querySelector('input[name="user_name"]').value;
+            const usernameMessage = document.getElementById('username-message');
+            if (username.length < 3) {
+                usernameMessage.textContent = "Username must be at least 3 characters long.";
+            } else {
+                usernameMessage.textContent = ""; // Clear message if valid
+            }
+        }
+
+        function validatePassword() {
+            const password = document.querySelector('input[name="user_password"]').value;
+            const passwordMessage = document.getElementById('password-message');
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+
+            if (!passwordPattern.test(password)) {
+                passwordMessage.textContent = "Password must be at least 6 characters, include at least one letter, one number, and one special character.";
+            } else {
+                passwordMessage.textContent = ""; // Clear message if valid
+            }
+        }
+
+        function handleSubmit(event) {
             event.preventDefault();
-            // Redirect to index.html
+            const username = document.querySelector('input[name="user_name"]').value;
+            const password = document.querySelector('input[name="user_password"]').value;
+            const usernameMessage = document.getElementById('username-message');
+            const passwordMessage = document.getElementById('password-message');
+
+            if (username.length < 3) {
+                usernameMessage.textContent = "Username must be at least 3 characters long.";
+                return;
+            }
+
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+            if (!passwordPattern.test(password)) {
+                passwordMessage.textContent = "Password must be at least 6 characters, include letters, numbers, and atleast one special character.";
+                return;
+            }
+
+            // Redirect if validation passes
             window.location.href = 'index2.html';
         }
     </script>
@@ -124,19 +166,21 @@
     <header>
         <div class="left_bx1">
             <div class="content">
-                <form method="post" onsubmit="redirectToIndex(event)">
+                <form method="post" onsubmit="handleSubmit(event)">
                     <h3>Login</h3>
                     <div class="card">
                         <label for="name">Name</label>
-                        <input type="text" name="user_name" placeholder="Enter Your Username" required>
+                        <input type="text" name="user_name" placeholder="Enter Your Username" oninput="validateUsername()" required>
+                        <div id="username-message" class="validation-message"></div>
                     </div>
                     <div class="card">
                         <label for="password">Password</label>
-                        <input type="password" name="user_password" placeholder="Enter Your Password" required>
+                        <input type="password" name="user_password" placeholder="Enter Your Password" oninput="validatePassword()" required>
+                        <div id="password-message" class="validation-message"></div>
                     </div>
                     <input type="submit" value="Login" class="submit">
                     <div class="check">
-                        <input type="checkbox" name="" id=""> <span>Remember Me.</span>
+                        <input type="checkbox" name="remember_me" id="remember_me"> <span>Remember Me.</span>
                     </div>
                     <p>Don't have an account yet? <a href="signup.html">Sign Up</a></p>
                 </form>
@@ -145,7 +189,7 @@
         <!-- right box  -->
         <div class="right_bx1">
             <img src="./login-banner.png" alt="Login Banner">
-            <h3>Incorrect Password</h3>
+            <h3>Best Deals</h3>
         </div>
     </header>
 </body>
